@@ -1,0 +1,57 @@
+﻿<Window x:Class="Pifagor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pifagor"
+        xmlns:vms="clr-namespace:Pifagor.Core.ViewModels"
+        xmlns:views="clr-namespace:Pifagor.Core.Views"
+        xmlns:discreteMathViews="clr-namespace:Pifagor.Core.Views.DiscreteMath"
+        xmlns:discreteMathVms="clr-namespace:Pifagor.Core.ViewModels.DiscreteMath"
+        xmlns:menuVms="clr-namespace:Pifagor.Core.ViewModels.Menu"
+        xmlns:menuViews="clr-namespace:Pifagor.Core.Views.Menu"
+        xmlns:customElements="clr-namespace:Pifagor.Core.CustomElements"
+        mc:Ignorable="d"
+        Title="Pifagor - интерактивное решение задач" Height="500" Width="900">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary d:IsDataSource="True" Source="/DesignTimeResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type discreteMathVms:NetworkModelViewModel}">
+                <discreteMathViews:NetworkModelView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{ x:Type vms:ProgramStartViewModel }">
+                <views:ProgramStartView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{ x:Type menuVms:DiscreteMathMenuViewModel }">
+                <menuViews:DiscreteMathMenuView />
+            </DataTemplate>
+
+            <ControlTemplate TargetType="Button" x:Key="MenuButtonTemplate">
+                <Border Height="100">
+                    <TextBlock TextWrapping="Wrap">
+                    <ContentControl Margin="{TemplateBinding Margin}" 
+                                    Content="{TemplateBinding Content}" 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </TextBlock>
+                </Border>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="5">
+            <customElements:MenuNavigationBtn Icon="/Ui/Images/test-icon.png" IconSize="26" Content="Дискретная математика" Command="{ Binding NavigateToCommand }" CommandParameter="{ x:Type menuVms:DiscreteMathMenuViewModel }"/>
+        </StackPanel>
+        <ContentControl Grid.Column="1" Margin="5" Content="{ Binding Navigation.CurrentView }"></ContentControl>
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Pifagor.Core.Views.Menu.DiscreteMathMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pifagor.Core.Views.Menu"
+             xmlns:customElements="clr-namespace:Pifagor.Core.CustomElements"
+             xmlns:vms="clr-namespace:Pifagor.Core.ViewModels.DiscreteMath"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary d:IsDataSource="True" Source="/DesignTimeResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </UserControl.Resources>
+    <StackPanel CanVerticallyScroll="True" d:Background="White" Margin="5">
+        <customElements:FlexPanel MinChildWidth="200" MinChildHeight="50" Gap="10">
+            <customElements:IconButton IconSize="40" Icon="/Ui/Images/network-model-icon.png" Content="Сетевая модель" Command="{ Binding NavigateToCommand }" CommandParameter="{ x:Type vms:NetworkModelViewModel }" />
+            <customElements:IconButton IconSize="40" Icon="/Ui/Images/new-tools-icon.png" Content="Задача о замене оборудования" />
+        </customElements:FlexPanel>
+    </StackPanel>
+</UserControl>

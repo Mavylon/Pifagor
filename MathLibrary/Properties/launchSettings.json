@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MathLibrary": {
+      "commandName": "Project"
+    },
+    "Pifagor": {
+      "commandName": "Project"
+    }
+  }
+}
